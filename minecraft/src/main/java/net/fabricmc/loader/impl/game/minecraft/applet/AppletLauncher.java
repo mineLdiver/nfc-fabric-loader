@@ -46,12 +46,13 @@ public class AppletLauncher extends Applet implements AppletStub {
 	private Applet mcApplet;
 	private boolean active;
 
-	public AppletLauncher(File instance, String username, String sessionid, String host, String port, boolean doConnect, boolean fullscreen, boolean demo) {
+	public AppletLauncher(File instance, String username, String sessionid, String uuid, String host, String port, boolean doConnect, boolean fullscreen, boolean demo) {
 		gameDir = instance;
 
 		params = new HashMap<>();
 		params.put("username", username);
 		params.put("sessionid", sessionid);
+		params.put("uuid", uuid);
 		params.put("stand-alone", "true");
 
 		if (doConnect) {

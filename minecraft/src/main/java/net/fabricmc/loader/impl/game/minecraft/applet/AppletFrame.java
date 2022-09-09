@@ -70,12 +70,17 @@ public class AppletFrame extends Frame implements WindowListener {
 
 		String username = arguments.getOrDefault("username", "Player");
 		String sessionid;
+		String uuid = null;
 
 		if (arguments.containsKey("session") /* 1.6 */) {
 			sessionid = arguments.get("session");
 		} else if (arguments.getExtraArgs().size() == 2 /* pre 1.6 */) {
 			username = arguments.getExtraArgs().get(0);
 			sessionid = arguments.getExtraArgs().get(1);
+		} else if (arguments.getExtraArgs().size() == 3 /* NFC */) {
+			username = arguments.getExtraArgs().get(0);
+			sessionid = arguments.getExtraArgs().get(1);
+			uuid = arguments.getExtraArgs().get(2);
 		} else /* fallback */ {
 			sessionid = "";
 		}
@@ -107,7 +112,7 @@ public class AppletFrame extends Frame implements WindowListener {
 
 		applet = new AppletLauncher(
 				instance,
-				username, sessionid,
+				username, sessionid, uuid,
 				host, port, doConnect,
 				fullscreen, demo
 				);
